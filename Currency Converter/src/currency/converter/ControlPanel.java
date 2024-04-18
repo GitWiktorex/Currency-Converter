@@ -4,8 +4,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ControlPanel {
+    public static String currIn, currOut, option;
+    public static double amount;
 
-    public static void Menu() {
+    private static void Menu() {
         System.out.println("OPCJE");
         System.out.println("1. Przeliczanie walut");
         System.out.println("2. Aktualne kursy");
@@ -14,12 +16,13 @@ public class ControlPanel {
         System.out.print('\n' + "Wybierz opcje: ");
     }
     
-    public static void Continue(){
+    private static void Continue(){
         Scanner scanner = new Scanner(System.in);
         
         System.out.print('\n');
-        System.out.println("Nacisnij Enter, aby kontynuowac...");
+        System.out.print("Nacisnij Enter, aby kontynuowac...");
         scanner.nextLine();
+        System.out.print('\n');
     }
     
     public static void main(String[] args) {
@@ -27,28 +30,52 @@ public class ControlPanel {
 
         while (true) {
             Menu();
-            int option = scanner.nextInt();
+            option = scanner.nextLine();
             System.out.print('\n');
 
             switch (option) {
-                case 1:
-                    Convert.OptionConvertCurr();  
+                case "1":
+                    System.out.print("Podaj walute wejsciowa: ");
+                    currIn = scanner.nextLine();
+
+                    System.out.print("Podaj walute wyjsciowa: ");
+                    currOut = scanner.nextLine();
+
+                    System.out.print("Podaj kwote: ");
+                    amount=0;
+                    try {
+                        amount = Double.parseDouble(scanner.nextLine());
+                    } catch (NumberFormatException error) {
+                        System.out.print('\n');
+                        System.out.println("Niepoprawny format kwoty");
+                        return;
+                    }
+                    
+//                    double result=Convert.ConvertCurr();
+//                    System.out.print(result);
+                    Convert converter = new Convert();
+                    converter.ConvertCurr();
+                    
                     Continue();
                     break;
-                case 2:
+                    
+                case "2":
                     Map<String, String> dataMap = ReadFile.readDataFromFile(); // Wywołanie funkcji do odczytu danych z pliku
                     
                     System.out.println("AKTUALNE KURSY WALUT");
                     ReadFile.OptionPrintCurr(dataMap); // Wyświetlenie zawartości mapy
                     Continue();
                     break;
-                case 3:
+                    
+                case "3":
                     System.out.println("Dodawanie/modyfikacja kursu wymiany");
                     Continue();
                     break;
-                case 4:
-                    System.out.println("Zakonczenie pracy");
+                    
+                case "4":
+                    System.out.println("Zakonczenie pracy.");
                     return;
+                    
                 default:
                     System.out.println("Niepoprawna opcja.");
                     System.out.print('\n');
