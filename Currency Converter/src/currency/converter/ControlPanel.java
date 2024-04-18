@@ -18,23 +18,23 @@ public class ControlPanel {
 
         while (true) {
             Menu();
-            String opcja = scanner.nextLine();
+            int option = scanner.nextInt();
 
-            switch (opcja) {
-                case "1":
+            switch (option) {
+                case 1:
 //                  Convert.OptionConverCura(scanner);
                     System.out.print('\n');
                     break;
-                case "2":
+                case 2:
 //                  Map<String, String> dataMap = ReadFile.readDataFromFile("kursy.txt"); // Wywołanie funkcji do odczytu danych z pliku
 //                  ReadFile.OptionPrintCura(dataMap); // Wyświetlenie zawartości mapy
                     System.out.print('\n');
                     break;
-                case "3":
+                case 3:
                     System.out.println("Dodawanie/modyfikacja kursu wymiany");
                     System.out.print('\n');
                     break;
-                case "4":
+                case 4:
                     System.out.println("Zakonczenie pracy");
                     return;
                 default:
