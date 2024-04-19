@@ -48,7 +48,6 @@ public class ControlPanel {
                     } catch (NumberFormatException error) {
                         System.out.print('\n');
                         System.out.println("Niepoprawny format kwoty");
-                        return;
                     }
                     
 //                    double result=Convert.ConvertCurr();
@@ -63,7 +62,7 @@ public class ControlPanel {
                     Map<String, String> dataMap = ReadFile.readDataFromFile(); // Wywołanie funkcji do odczytu danych z pliku
                     
                     System.out.println("AKTUALNE KURSY WALUT");
-                    ReadFile.OptionPrintCurr(dataMap); // Wyświetlenie zawartości mapy
+                    ReadFile.PrintCurr(dataMap); // Wyświetlenie zawartości mapy
                     Continue();
                     break;
                     

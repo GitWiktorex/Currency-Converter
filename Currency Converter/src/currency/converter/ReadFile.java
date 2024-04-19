@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 class ReadFile extends ControlPanel {
-    private static String filename = "CurrData.txt"; // Nazwa pliku
+    private static String filename = "currency_exchange.txt"; // Nazwa pliku
     
-    public static void OptionPrintCurr(Map<String, String> dataMap) {
+    public static void PrintCurr(Map<String, String> dataMap) {
         // Wyświetlenie danych
         for(Map.Entry<String, String> entry : dataMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());

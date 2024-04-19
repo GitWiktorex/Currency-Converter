@@ -35,7 +35,7 @@ class Convert extends ControlPanel {
         
         if (dataMap.containsKey(key)) {
             value = Double.parseDouble(ReadFile.getValueByKey(key, dataMap));
-            double convertedValue = value * amount;   
+            double convertedValue = value / amount;   
             System.out.println("\n"+amount+" "+currIn+" to "+convertedValue+" "+currOut);
         } else {
            System.out.println('\n'+"Nie mozna odnalezc kursu wymiany dla podanych walut.");   
