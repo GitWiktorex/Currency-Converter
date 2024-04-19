@@ -1,8 +1,7 @@
 package currency.converter;
 
-import java.util.HashMap;
+import java.text.DecimalFormat;
 import java.util.Map;
-import java.util.Scanner;
 
 class Convert extends ControlPanel {
 //    public static void OptionConvertCurr() {
@@ -30,13 +29,15 @@ class Convert extends ControlPanel {
     public void ConvertCurr() {
         Map<String, String> dataMap = ReadFile.readDataFromFile();
         
-        String key = currIn+"-"+currOut;
-        double value=0;
+        DecimalFormat rounding = new DecimalFormat("#.00");
+        
+        String key = currIn + "-" + currOut;
+        double value;
         
         if (dataMap.containsKey(key)) {
             value = Double.parseDouble(ReadFile.getValueByKey(key, dataMap));
-            double convertedValue = value / amount;   
-            System.out.println("\n"+amount+" "+currIn+" to "+convertedValue+" "+currOut);
+            double convertedValue = amount/value;   
+            System.out.println("\n" + rounding.format(amount) + " " + currIn + " to " + rounding.format(convertedValue) + " " + currOut);
         } else {
            System.out.println('\n'+"Nie mozna odnalezc kursu wymiany dla podanych walut.");   
         }

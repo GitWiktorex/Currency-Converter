@@ -36,10 +36,10 @@ public class ControlPanel {
             switch (option) {
                 case "1":
                     System.out.print("Podaj walute wejsciowa: ");
-                    currIn = scanner.nextLine();
+                    currIn = scanner.nextLine().toUpperCase();
 
                     System.out.print("Podaj walute wyjsciowa: ");
-                    currOut = scanner.nextLine();
+                    currOut = scanner.nextLine().toUpperCase();
 
                     System.out.print("Podaj kwote: ");
                     amount=0;
@@ -49,9 +49,7 @@ public class ControlPanel {
                         System.out.print('\n');
                         System.out.println("Niepoprawny format kwoty");
                     }
-                    
-//                    double result=Convert.ConvertCurr();
-//                    System.out.print(result);
+        
                     Convert converter = new Convert();
                     converter.ConvertCurr();
                     
