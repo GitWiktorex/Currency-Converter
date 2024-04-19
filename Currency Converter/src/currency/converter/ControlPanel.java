@@ -4,8 +4,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ControlPanel {
-    public static String currIn, currOut, option;
+    public static String currIn, currOut;
     public static double amount;
+    private static String option;
 
     private static void Menu() {
         System.out.println("OPCJE");
@@ -51,7 +52,7 @@ public class ControlPanel {
                     }
         
                     Convert converter = new Convert();
-                    converter.ConvertCurr();
+                    converter.PrintConvertedAmount();
                     
                     Continue();
                     break;
