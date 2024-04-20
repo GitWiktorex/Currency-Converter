@@ -8,37 +8,61 @@ import java.io.IOException;
 import java.util.Scanner;
 
 class WriteFile extends ControlPanel {
-    private static String filename = "currency_exchange.txt"; //ReadFile.getFilename();
+    private static String filename = ReadFile.getFilename(); // Pobiera nazwe pliku
 
     // Metoda do zapisywania kursów walut do pliku
-    static void addOrUpdateExchangeRate() {
+    private static void EditExchangeRate() {
+        boolean found;
         try {
             File file = new File(filename);
-            Scanner scanner = new Scanner(file);
-            StringBuilder fileContent = new StringBuilder();
-
-            // Odczytanie zawartości pliku
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                // Sprawdzenie, czy dane już istnieją w pliku
-                if (line.startsWith(currIn + "-" + currOut)) {
-                    // Jeśli tak, to aktualizujemy dane
-                    line = currIn + "-" + currOut + "-" + exchangeRate;
+            StringBuilder fileContent;
+            
+            try (Scanner scanner = new Scanner(file)) {
+                fileContent = new StringBuilder();
+                found = false;
+                
+                // Odczytanie zawartości pliku
+                while (scanner.hasNextLine()) {
+                    String updateExchangeRate = scanner.nextLine();
+                    
+                    // Sprawdzenie, czy dane już istnieją w pliku
+                    if (updateExchangeRate.startsWith(currIn + "-" + currOut)) {
+                        
+                        // Jeśli tak, to aktualizujemy dane
+                        updateExchangeRate = currIn + "-" + currOut + "-" + exchangeRate;
+                        found = true;
+                    }
+                    fileContent.append(updateExchangeRate).append("\n");
                 }
-                fileContent.append(line).append("\n");
+                
+                if(found){
+                    System.out.print('\n');
+                    System.out.println("Zaktualizowano kurs wymiany walut.");
+                }
             }
-            scanner.close();
+            
+            // Jeśli nie, to dodaje dane
+            if(!found) {
+                String newExchangeRate = currIn + "-" + currOut + "-" + exchangeRate;
+                fileContent.append(newExchangeRate).append("\n");
+                
+                System.out.print('\n');
+                System.out.println("Dodano nowy kurs wymiany walut.");
+            }
 
             // Zapisanie nowej zawartości pliku (uwzględniając ewentualną aktualizację)
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
                 writer.write(fileContent.toString());
                 writer.flush();
-                System.out.println("Dodano lub zaktualizowano kurs wymiany.");
             } catch (IOException e) {
                 System.out.println("Wystąpił problem podczas zapisu do pliku: " + e.getMessage());
             }
         } catch (FileNotFoundException e) {
             System.out.println("Nie mozna odnalezc pliku zapisu");
         }
+    }
+    
+    public static void ResultExchangeRate() {
+        EditExchangeRate();
     }
 }

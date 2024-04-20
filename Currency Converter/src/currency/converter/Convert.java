@@ -6,11 +6,12 @@ import java.util.Map;
 class Convert extends ControlPanel {
     
     private double ConvertCurr(String key) {
-        Map<String, String> dataMap = ReadFile.readDataFromFile();
+        Map<String, String> dataMap = ReadFile.readDataFromFile(); // Wywołanie funkcji do odczytu danych z pliku
 
         double value;
         double convertedValue=-1;
         
+        // Sprawdzenie czy podany klucz istnieje i zwrocenie jego wartości
         if (dataMap.containsKey(key)) {
             value = Double.parseDouble(ReadFile.getValueByKey(key, dataMap));
             convertedValue = amount/value;   

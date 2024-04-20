@@ -21,25 +21,25 @@ class ReadFile extends ControlPanel {
     }
     
     public static Map<String, String> readDataFromFile() {
+        // Wczytanie danych z pliku
         Map<String, String> dataMap = new HashMap<>();
         try {
             File file = new File(filename);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] parts = line.split("-"); // Dzieli linię na części po "-"
-                if (parts.length == 3) { // Upewnij się, że mamy trzy części (klucz-wartość)
-                    String key = parts[0] + "-" + parts[1]; // Łączy dwie pierwsze części jako klucz
-                    String value = parts[2]; // Trzecia część jako wartość
-                    dataMap.put(key, value);
-                } else {
-                    System.out.println("Nieprawidłowy format wiersza: " + line);
+            try (Scanner scanner = new Scanner(file)) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] parts = line.split("-"); // Dzieli linię na części po "-"
+                    if (parts.length == 3) {
+                        String key = parts[0] + "-" + parts[1]; // Dwie pierwsze części to klucz
+                        String value = parts[2]; // Trzecia część to wartość
+                        dataMap.put(key, value);
+                    } else {
+                        System.out.println("Nieprawidłowy format wiersza: " + line);
+                    }
                 }
             }
-            scanner.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException error) {
             System.out.println("Nie znaleziono pliku ");
-            e.printStackTrace();
         }
         return dataMap;
     }

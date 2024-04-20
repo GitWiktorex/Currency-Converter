@@ -12,7 +12,7 @@ public class ControlPanel {
         System.out.println("OPCJE");
         System.out.println("1. Przeliczanie walut");
         System.out.println("2. Aktualne kursy");
-        System.out.println("3. Dodanie lub modyfikacja kursu wymiany");
+        System.out.println("3. Dodanie lub aktualizacja kursu wymiany");
         System.out.println("4. Zamknij program");
         System.out.print('\n' + "Wybierz opcje: ");
     }
@@ -47,8 +47,9 @@ public class ControlPanel {
                     System.out.print("Podaj kwote: ");
                     try {
                         amount = Double.parseDouble(scanner.nextLine());
+                        
                         Convert converter = new Convert();
-                        converter.PrintConvertedAmount();
+                        converter.PrintConvertedAmount(); // Wyrzucenie wyniku wymiany walut
                     } 
                     catch (NumberFormatException error) {
                         System.out.print('\n');
@@ -68,24 +69,26 @@ public class ControlPanel {
                     break;
                     
                 case "3":
-                    System.out.println("NOWY KURS WYMIANY WALUT");
+                    System.out.println("EDYTOWANIE KURSU WYMIANY WALUT");
                     
                     System.out.print("Podaj walute wejsciowa: ");
-                    currIn = scanner.nextLine();
+                    currIn = scanner.nextLine().toUpperCase();
 
                     System.out.print("Podaj walute wyjsciowa: ");
-                    currOut = scanner.nextLine();
+                    currOut = scanner.nextLine().toUpperCase();
 
                     System.out.print("Podaj kurs wymiany: ");
                     try {
                         exchangeRate = Double.parseDouble(scanner.nextLine());
-                        WriteFile.addOrUpdateExchangeRate();
+                        
                     } 
                     catch (NumberFormatException error) {
                         System.out.print('\n');
-                        System.out.println("Niepoprawny format kusu");
+                        System.out.println("Niepoprawny format kursu");
                     }
 
+                    WriteFile.ResultExchangeRate();
+                    
                     Continue();
                     break;
                     
