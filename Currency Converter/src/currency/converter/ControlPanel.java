@@ -11,9 +11,10 @@ public class ControlPanel {
     private static void Menu() {
         System.out.println("OPCJE");
         System.out.println("1. Przeliczanie walut");
-        System.out.println("2. Aktualne kursy");
-        System.out.println("3. Dodanie lub aktualizacja kursu wymiany");
-        System.out.println("4. Zamknij program");
+        System.out.println("2. Aktualne kursy wymiany walut");
+        System.out.println("3. Dodawanie lub aktualizacja kursu wymiany walut");
+        System.out.println("4. Usuwanie kursu wymiany walut");
+        System.out.println("5. Zamknij program");
         System.out.print('\n' + "Wybierz opcje: ");
     }
     
@@ -93,6 +94,20 @@ public class ControlPanel {
                     break;
                     
                 case "4":
+                    System.out.println("USUWANIE KURSU WYMIANY WALUT");
+                    
+                    System.out.print("Podaj walute wejsciowa: ");
+                    currIn = scanner.nextLine().toUpperCase();
+
+                    System.out.print("Podaj walute wyjsciowa: ");
+                    currOut = scanner.nextLine().toUpperCase();
+                    
+                    WriteFile.DeleteExchangeRate();
+                    
+                    Continue();
+                    break;
+                
+                case "5":
                     System.out.println("Zakonczenie pracy.");
                     return;
                     

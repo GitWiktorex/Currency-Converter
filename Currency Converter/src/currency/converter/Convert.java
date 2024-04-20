@@ -29,7 +29,8 @@ class Convert extends ControlPanel {
        
        if (convertedAmount != -1){
             DecimalFormat rounding = new DecimalFormat("0.00");
-            System.out.println("\n" + rounding.format(amount) + " " + currIn + " to " + rounding.format(convertedAmount) + " " + currOut);
+            System.out.println('\n');
+            System.out.println(rounding.format(amount) + " " + currIn + " to " + rounding.format(convertedAmount) + " " + currOut);
        }
        else {
             System.out.println('\n'+"Nie mozna odnalezc kursu wymiany dla podanych walut."); 
