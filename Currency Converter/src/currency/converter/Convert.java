@@ -9,7 +9,7 @@ class Convert extends ControlPanel {
         Map<String, String> dataMap = ReadFile.readDataFromFile();
 
         double value;
-        double convertedValue=0;
+        double convertedValue=-1;
         
         if (dataMap.containsKey(key)) {
             value = Double.parseDouble(ReadFile.getValueByKey(key, dataMap));
@@ -26,8 +26,8 @@ class Convert extends ControlPanel {
        String key = currIn + "-" + currOut;
        double convertedAmount = ConvertCurr(key);
        
-       if (convertedAmount != 0){
-            DecimalFormat rounding = new DecimalFormat("#.00");
+       if (convertedAmount != -1){
+            DecimalFormat rounding = new DecimalFormat("0.00");
             System.out.println("\n" + rounding.format(amount) + " " + currIn + " to " + rounding.format(convertedAmount) + " " + currOut);
        }
        else {

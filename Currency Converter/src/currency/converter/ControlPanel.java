@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ControlPanel {
     public static String currIn, currOut;
-    public static double amount;
+    public static double amount, exchangeRate;
     private static String option;
 
     private static void Menu() {
@@ -36,6 +36,8 @@ public class ControlPanel {
 
             switch (option) {
                 case "1":
+                    System.out.println("PRZELICZNIK WALUT");
+                    
                     System.out.print("Podaj walute wejsciowa: ");
                     currIn = scanner.nextLine().toUpperCase();
 
@@ -43,17 +45,16 @@ public class ControlPanel {
                     currOut = scanner.nextLine().toUpperCase();
 
                     System.out.print("Podaj kwote: ");
-                    amount=0;
                     try {
                         amount = Double.parseDouble(scanner.nextLine());
-                    } catch (NumberFormatException error) {
+                        Convert converter = new Convert();
+                        converter.PrintConvertedAmount();
+                    } 
+                    catch (NumberFormatException error) {
                         System.out.print('\n');
                         System.out.println("Niepoprawny format kwoty");
                     }
-        
-                    Convert converter = new Convert();
-                    converter.PrintConvertedAmount();
-                    
+
                     Continue();
                     break;
                     
@@ -61,12 +62,30 @@ public class ControlPanel {
                     Map<String, String> dataMap = ReadFile.readDataFromFile(); // Wywołanie funkcji do odczytu danych z pliku
                     
                     System.out.println("AKTUALNE KURSY WALUT");
+                    
                     ReadFile.PrintCurr(dataMap); // Wyświetlenie zawartości mapy
                     Continue();
                     break;
                     
                 case "3":
-                    System.out.println("Dodawanie/modyfikacja kursu wymiany");
+                    System.out.println("NOWY KURS WYMIANY WALUT");
+                    
+                    System.out.print("Podaj walute wejsciowa: ");
+                    currIn = scanner.nextLine();
+
+                    System.out.print("Podaj walute wyjsciowa: ");
+                    currOut = scanner.nextLine();
+
+                    System.out.print("Podaj kurs wymiany: ");
+                    try {
+                        exchangeRate = Double.parseDouble(scanner.nextLine());
+                        WriteFile.addOrUpdateExchangeRate();
+                    } 
+                    catch (NumberFormatException error) {
+                        System.out.print('\n');
+                        System.out.println("Niepoprawny format kusu");
+                    }
+
                     Continue();
                     break;
                     

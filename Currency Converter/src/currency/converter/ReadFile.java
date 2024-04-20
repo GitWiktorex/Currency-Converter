@@ -9,6 +9,10 @@ import java.util.Scanner;
 class ReadFile extends ControlPanel {
     private static String filename = "currency_exchange.txt"; // Nazwa pliku
     
+    public static String getFilename() {
+        return filename;
+    }
+    
     public static void PrintCurr(Map<String, String> dataMap) {
         // Wyświetlenie danych
         for(Map.Entry<String, String> entry : dataMap.entrySet()) {
