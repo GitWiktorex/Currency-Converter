@@ -1,5 +1,6 @@
 package currency.converter;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -14,7 +15,8 @@ public class ControlPanel {
         System.out.println("2. Aktualne kursy wymiany walut");
         System.out.println("3. Dodawanie lub aktualizacja kursu wymiany walut");
         System.out.println("4. Usuwanie kursu wymiany walut");
-        System.out.println("5. Zamknij program");
+        System.out.println("5. Wyczysc ekran konsoli");
+        System.out.println("6. Zamknij program");
         System.out.print('\n' + "Wybierz opcje: ");
     }
     
@@ -25,6 +27,10 @@ public class ControlPanel {
         System.out.print("Nacisnij Enter, aby kontynuowac...");
         scanner.nextLine();
         System.out.print('\n');
+    }
+    
+     public static void ClearConsole() {
+        for (int i = 0; i < 50; ++i) System.out.println();
     }
     
     public static void main(String[] args) {
@@ -108,6 +114,10 @@ public class ControlPanel {
                     break;
                 
                 case "5":
+                    ClearConsole();
+                    break;
+                    
+                case "6":
                     System.out.println("Zakonczenie pracy.");
                     return;
                     

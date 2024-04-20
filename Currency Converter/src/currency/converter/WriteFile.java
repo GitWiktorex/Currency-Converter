@@ -57,7 +57,7 @@ class WriteFile extends ControlPanel {
                 writer.write(fileContent.toString());
                 writer.flush();
             } catch (IOException e) {
-                System.out.println("Wystąpił problem podczas zapisu do pliku: " + e.getMessage());
+                System.out.println("Wystapil problem podczas zapisu do pliku: " + e.getMessage());
             }
         } catch (FileNotFoundException e) {
             System.out.println("Nie mozna odnalezc pliku zapisu.");
@@ -80,19 +80,32 @@ class WriteFile extends ControlPanel {
                 }
             }
             System.out.print('\n');
-            System.out.println("Usunieto wybrany kurs walut.");
         } catch (IOException e) {
-            System.out.println("Błąd podczas przetwarzania pliku" + e.getMessage());
+            System.out.println("Blad podczas przetwarzania pliku" + e.getMessage());
             return;
         }
 
-        // Zamiana plików
-        if (!oldFile.delete()) {
-            System.out.println("Nie udało się usunąć pliku.");
+        // Weryfikacja wykonania operacji
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Czy napewno chcesz usunac dany kurs?: ");
+        String verification=scanner.nextLine();
+        
+        if(verification.equalsIgnoreCase("Tak")) {
+            System.out.println("Usunieto wybrany kurs walut.");
+            
+            // Zamiana plików
+            if (!oldFile.delete()) {
+            System.out.println("Nie udalo się usunac pliku.");
             return;
-        }
-        if (!newFile.renameTo(oldFile)) {
-            System.out.println("Nie udało się zmienić nazwy pliku.");
+            }
+            if (!newFile.renameTo(oldFile)) {
+                System.out.println("Nie udalo sie zmienic nazwy pliku.");
+            }
+       }
+        else {
+            newFile.delete();
+            System.out.println("Operacja zostala anulowana.");
         }
     }
     
