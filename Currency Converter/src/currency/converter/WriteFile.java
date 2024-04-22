@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 class WriteFile extends ControlPanel {
-    private static String filename = ReadFile.getFilename(); // Pobiera nazwe pliku
+    private static String filename = ReadFile.filename; // Pobiera nazwe pliku
 
     // Metoda do zapisywania kursów walut do pliku
     private static void EditExchangeRate() {

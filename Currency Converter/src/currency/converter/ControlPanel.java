@@ -1,11 +1,10 @@
 package currency.converter;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class ControlPanel {
-    public static String currIn, currOut;
-    public static double amount, exchangeRate;
+    protected static String currIn, currOut;
+    protected static double amount, exchangeRate;
     private static String option;
 
     private static void Menu() {
