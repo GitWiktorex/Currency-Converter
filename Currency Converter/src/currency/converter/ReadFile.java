@@ -7,7 +7,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 class ReadFile  {
-    public static String filename = "currency_exchange.txt"; // Nazwa pliku
+    public static String filename;
+    
+    public ReadFile(String filename) {
+        this.filename = filename;
+    }
     
     private static Map<String, String> ReadDataFromFile() {
         // Wczytanie danych z pliku

@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-class WriteFile extends ControlPanel {
+abstract class WriteFile extends ControlPanel {
     private static String filename = ReadFile.filename; // Pobiera nazwe pliku
 
     // Metoda do zapisywania kursów walut do pliku
@@ -110,14 +110,23 @@ class WriteFile extends ControlPanel {
     }
     
     public static void ResultExchangeRate(String operation) {
-        if (operation ==  "edit") {
-            EditExchangeRate();
-        }
-        else if (operation == "delete") {
-            DeleteExchangeRate();
+        
+        if(currIn != "" && currOut!=""){
+            switch (operation) {
+                case "edit":
+                    EditExchangeRate();
+                    break;
+                case "delete":
+                    DeleteExchangeRate();
+                    break;
+                default:
+                    System.out.println("Nie poprawna operacja");
+                    break;
+            }
         }
         else {
-            System.out.println("Nie poprawna operacja");
+            System.out.print('\n');
+            System.out.println("Nie podano walut, operacja zostala anulowana");
         }
     }
 }

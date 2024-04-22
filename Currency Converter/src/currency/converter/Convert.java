@@ -8,7 +8,7 @@ class Convert extends ControlPanel {
     private double convertedAmount;
 
     private double ConvertCurr(String key) {
-        value = ReadFile.GetValueByKey(key);
+        value = reader.GetValueByKey(key);
         
         if(value != 0) {
             convertedAmount = amount/value; 

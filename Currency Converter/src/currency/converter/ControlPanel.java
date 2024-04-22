@@ -6,6 +6,9 @@ public class ControlPanel {
     protected static String currIn, currOut;
     protected static double amount, exchangeRate;
     private static String option;
+    
+    protected static ReadFile reader = new ReadFile("currency_exchange.txt"); // Nazwa pliku
+    private static Convert converter = new Convert();
 
     private static void Menu() {
         System.out.println("OPCJE");
@@ -52,8 +55,6 @@ public class ControlPanel {
                     System.out.print("Podaj kwote: ");
                     try {
                         amount = Double.parseDouble(scanner.nextLine());
-                        
-                        Convert converter = new Convert();
                         converter.PrintConvertedAmount(); // Wyrzucenie wyniku wymiany walut
                     } 
                     catch (NumberFormatException error) {
@@ -66,7 +67,7 @@ public class ControlPanel {
                     
                 case "2":
                     System.out.println("AKTUALNE KURSY WALUT");
-                    ReadFile.PrintCurr(); // Wyświetlenie zawartości mapy
+                    reader.PrintCurr(); // Wyświetlenie zawartości mapy
                     Continue();
                     break;
                     
@@ -82,14 +83,12 @@ public class ControlPanel {
                     System.out.print("Podaj kurs wymiany: ");
                     try {
                         exchangeRate = Double.parseDouble(scanner.nextLine());
-                        
+                        WriteFile.ResultExchangeRate("edit");
                     } 
                     catch (NumberFormatException error) {
                         System.out.print('\n');
                         System.out.println("Niepoprawny format kursu");
                     }
-
-                    WriteFile.ResultExchangeRate("edit");
                     Continue();
                     break;
                     
