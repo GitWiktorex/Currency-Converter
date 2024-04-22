@@ -17,7 +17,8 @@ public class ControlPanel {
         System.out.println("3. Dodawanie lub aktualizacja kursu wymiany walut");
         System.out.println("4. Usuwanie kursu wymiany walut");
         System.out.println("5. Wyczysc ekran konsoli");
-        System.out.println("6. Zamknij program");
+        System.out.println("6. Zmiana pliku zrodlowego z danymi");
+        System.out.println("7. Zamknij program");
         System.out.print('\n' + "Wybierz opcje: ");
     }
     
@@ -109,7 +110,29 @@ public class ControlPanel {
                     ClearConsole();
                     break;
                     
-                case "6":
+                 case "6":
+                    String actualFilename = reader.filename;
+                    String newFilename;
+                    
+                    System.out.println("PLIK ZAWIERAJACY KURSY WYMIANY WALUT");
+                    
+                    System.out.println("Aktualna pliku z danymi: " + actualFilename);
+                    System.out.print("Nowa plik z danymi: ");
+                    newFilename = scanner.nextLine();
+                    
+                    if(newFilename != "") {
+                        ReadFile reader = new ReadFile(newFilename);
+                        System.out.print('\n');
+                        System.out.println("Plik zrodlowy z danymi zostal zmieniony, kursy beda pobierane z pliku: " + newFilename);
+                    }
+                    else {
+                        System.out.print('\n');
+                        System.out.println("Plik zrodlowy z danymi nie zostal zmieniony, kursy beda pobierane z pliku: " + actualFilename);
+                    }
+                    Continue();
+                    break;
+                    
+                case "7":
                     System.out.println("Zakonczenie pracy.");
                     return;
                     
