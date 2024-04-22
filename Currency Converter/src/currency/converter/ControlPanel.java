@@ -1,6 +1,5 @@
 package currency.converter;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -29,7 +28,7 @@ public class ControlPanel {
         System.out.print('\n');
     }
     
-     public static void ClearConsole() {
+    private static void ClearConsole() {
         for (int i = 0; i < 50; ++i) System.out.println();
     }
     
@@ -67,11 +66,8 @@ public class ControlPanel {
                     break;
                     
                 case "2":
-                    Map<String, String> dataMap = ReadFile.readDataFromFile(); // Wywołanie funkcji do odczytu danych z pliku
-                    
                     System.out.println("AKTUALNE KURSY WALUT");
-                    
-                    ReadFile.PrintCurr(dataMap); // Wyświetlenie zawartości mapy
+                    ReadFile.PrintCurr(); // Wyświetlenie zawartości mapy
                     Continue();
                     break;
                     
@@ -94,8 +90,7 @@ public class ControlPanel {
                         System.out.println("Niepoprawny format kursu");
                     }
 
-                    WriteFile.ResultExchangeRate();
-                    
+                    WriteFile.ResultExchangeRate("edit");
                     Continue();
                     break;
                     
@@ -108,8 +103,7 @@ public class ControlPanel {
                     System.out.print("Podaj walute wyjsciowa: ");
                     currOut = scanner.nextLine().toUpperCase();
                     
-                    WriteFile.DeleteExchangeRate();
-                    
+                    WriteFile.ResultExchangeRate("delete");
                     Continue();
                     break;
                 

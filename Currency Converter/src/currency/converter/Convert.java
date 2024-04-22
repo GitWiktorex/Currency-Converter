@@ -1,35 +1,32 @@
 package currency.converter;
 
 import java.text.DecimalFormat;
-import java.util.Map;
 
 class Convert extends ControlPanel {
-    
-    private double ConvertCurr(String key) {
-        Map<String, String> dataMap = ReadFile.readDataFromFile(); // Wywołanie funkcji do odczytu danych z pliku
+    private String key;
+    private double value;
+    private double convertedAmount;
 
-        double value;
-        double convertedValue=-1;
+    private double ConvertCurr(String key) {
+        value = ReadFile.getValueByKey(key);
         
-        // Sprawdzenie czy podany klucz istnieje i zwrocenie jego wartości
-        if (dataMap.containsKey(key)) {
-            value = Double.parseDouble(ReadFile.getValueByKey(key, dataMap));
-            convertedValue = amount/value;   
-            return convertedValue;
+        if(value != 0) {
+            convertedAmount = amount/value; 
+            return convertedAmount; 
         }
         else {
-            return convertedValue;
-        } 
-        
+            return -1;
+        }
     }
     
      public void PrintConvertedAmount(){
-       String key = currIn + "-" + currOut;
-       double convertedAmount = ConvertCurr(key);
+       key = currIn + "-" + currOut;
+       convertedAmount = ConvertCurr(key);
        
        if (convertedAmount != -1){
             DecimalFormat rounding = new DecimalFormat("0.00");
-            System.out.println('\n');
+            
+            System.out.print('\n');
             System.out.println(rounding.format(amount) + " " + currIn + " to " + rounding.format(convertedAmount) + " " + currOut);
        }
        else {

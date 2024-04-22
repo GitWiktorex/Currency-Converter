@@ -64,16 +64,16 @@ class WriteFile extends ControlPanel {
         }
     }
     
-    public static void DeleteExchangeRate() {
+    private static void DeleteExchangeRate() {
         File oldFile = new File(filename);
-        File newFile = new File("temp_"+filename);
+        File newFile = new File("temp_" + filename);
+        
 
         try (BufferedReader reader = new BufferedReader(new FileReader(oldFile));
             BufferedWriter writer = new BufferedWriter(new FileWriter(newFile))) {
-
+            
             String exchangeRate;
             while ((exchangeRate = reader.readLine()) != null) {
-                
                 // Sprawdza, czy linia zawiera usuwany kurs, jeśli nie zapisuje ją do nowego pliku
                 if (!exchangeRate.contains(currIn + "-" + currOut)) {
                     writer.write(exchangeRate + System.getProperty("line.separator"));
@@ -109,7 +109,15 @@ class WriteFile extends ControlPanel {
         }
     }
     
-    public static void ResultExchangeRate() {
-        EditExchangeRate();
+    public static void ResultExchangeRate(String operation) {
+        if (operation ==  "edit") {
+            EditExchangeRate();
+        }
+        else if (operation == "delete") {
+            DeleteExchangeRate();
+        }
+        else {
+            System.out.println("Nie poprawna operacja");
+        }
     }
 }

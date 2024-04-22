@@ -6,21 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class ReadFile extends ControlPanel {
+class ReadFile  {
     private static String filename = "currency_exchange.txt"; // Nazwa pliku
     
     public static String getFilename() {
         return filename;
     }
     
-    public static void PrintCurr(Map<String, String> dataMap) {
-        // Wyświetlenie danych
-        for(Map.Entry<String, String> entry : dataMap.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
-    }
-    
-    public static Map<String, String> readDataFromFile() {
+    private static Map<String, String> ReadDataFromFile() {
         // Wczytanie danych z pliku
         Map<String, String> dataMap = new HashMap<>();
         try {
@@ -44,7 +37,27 @@ class ReadFile extends ControlPanel {
         return dataMap;
     }
     
-    public static String getValueByKey(String key, Map<String, String> dataMap) {
-        return dataMap.get(key); // Pobranie wartości na podstawie klucza
+    public static void PrintCurr() {
+        // Wywołanie funkcji do odczytu danych z pliku
+        Map<String, String> dataMap = ReadDataFromFile();
+        
+        // Wyświetlenie danych
+        for(Map.Entry<String, String> entry : dataMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+    
+    public static double getValueByKey(String key) {
+        // Wywołanie funkcji do odczytu danych z pliku
+        Map<String, String> dataMap = ReadDataFromFile();
+        
+        // Sprawdzenie czy podany klucz istnieje i zwrocenie jego wartości
+        if (dataMap.containsKey(key)) {
+            return Double.parseDouble(dataMap.get(key)); // Zmiana typu na double
+        }
+        else {
+            return 0;
+        } 
+        
     }
 }
