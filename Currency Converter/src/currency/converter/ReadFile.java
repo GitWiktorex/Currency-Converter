@@ -60,4 +60,16 @@ class ReadFile  {
         } 
         
     }
+    
+    public static void NewFilename(String newFilename){
+        if(newFilename != "" || newFilename != " ") {
+            ReadFile reader = new ReadFile(newFilename);
+            System.out.print('\n');
+            System.out.println("Plik zrodlowy z danymi zostal zmieniony, kursy beda pobierane z pliku: " + newFilename);
+        }
+        else {
+            System.out.print('\n');
+            System.out.println("Plik zrodlowy z danymi nie zostal zmieniony, kursy beda pobierane z pliku: " + filename);
+        }
+    }
 }

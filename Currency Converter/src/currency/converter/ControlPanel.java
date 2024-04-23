@@ -120,15 +120,7 @@ public class ControlPanel {
                     System.out.print("Nowa plik z danymi: ");
                     newFilename = scanner.nextLine();
                     
-                    if(newFilename != "") {
-                        ReadFile reader = new ReadFile(newFilename);
-                        System.out.print('\n');
-                        System.out.println("Plik zrodlowy z danymi zostal zmieniony, kursy beda pobierane z pliku: " + newFilename);
-                    }
-                    else {
-                        System.out.print('\n');
-                        System.out.println("Plik zrodlowy z danymi nie zostal zmieniony, kursy beda pobierane z pliku: " + actualFilename);
-                    }
+                    reader.NewFilename(newFilename);
                     Continue();
                     break;
                     
