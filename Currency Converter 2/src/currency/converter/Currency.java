@@ -1,8 +1,8 @@
 package currency.converter;
 
 public class Currency {
-    private String currIn;
-    private String currOut;
+    protected String currIn;
+    protected String currOut;
     private double amount;
     
     public Currency(String currIn, String currOut, double amount) {

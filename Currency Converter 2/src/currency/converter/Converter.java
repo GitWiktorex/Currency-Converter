@@ -6,7 +6,8 @@ public class Converter extends Currency {
     }
     
      public double ConvertAmount() {
-        double convertAmount = getAmount();
+        double exchangeRate = ReadFile.GetValueByKey(currIn+"-"+currOut);
+        double convertAmount = getAmount()*exchangeRate;
         return convertAmount;
     }
 }

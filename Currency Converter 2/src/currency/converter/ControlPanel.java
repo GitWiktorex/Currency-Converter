@@ -10,11 +10,11 @@ public class ControlPanel{
     private static void Menu() {
         System.out.println("OPCJE");
         System.out.println("1. Przeliczanie walut");
-        System.out.println("2. Aktualne kursy wymiany walut");
-        System.out.println("3. Dodawanie lub aktualizacja kursu wymiany walut");
-        System.out.println("4. Usuwanie kursu wymiany walut");
-        System.out.println("5. Wyczysc ekran konsoli");
-        System.out.println("6. Zmiana pliku zrodlowego z danymi");
+//        System.out.println("2. Aktualne kursy wymiany walut");
+//        System.out.println("3. Dodawanie lub aktualizacja kursu wymiany walut");
+//        System.out.println("4. Usuwanie kursu wymiany walut");
+//        System.out.println("5. Wyczysc ekran konsoli");
+//        System.out.println("6. Zmiana pliku zrodlowego z danymi");
         System.out.println("7. Zamknij program");
         System.out.print('\n' + "Wybierz opcje: ");
     }
@@ -43,7 +43,7 @@ public class ControlPanel{
             switch (option) {
                 case "1":
                     Converter pln = new Converter("PLN", "EUR", 1);
-                    Converter eur = new Converter("EUR", "PLN", 4.23);
+                    Converter eur = new Converter("EUR", "PLN", 1);
                     
                     System.out.println("1 PLN to: " + pln.ConvertAmount() + " EUR");
                     System.out.println("4.23 EUR to: " + eur.ConvertAmount() + " PLN");
