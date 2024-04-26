@@ -9,9 +9,9 @@ import java.util.Scanner;
 class ReadFile  {
     public static String filename = "exchange_rates.txt";
     
-//    public ReadFile(String filename) {
-//        this.filename = filename;
-//    }
+    public ReadFile(String filename) {
+        this.filename = filename;
+    }
     
     private static Map<String, String> ReadDataFromFile() {
         // Wczytanie danych z pliku
@@ -32,7 +32,8 @@ class ReadFile  {
                 }
             }
         } catch (FileNotFoundException error) {
-            System.out.println("Nie znaleziono pliku ");
+            System.out.print('\n');
+            System.out.println("Nie znaleziono pliku. ");
         }
         return dataMap;
     }
@@ -61,15 +62,15 @@ class ReadFile  {
         
     }
     
-//    public static void NewFilename(String newFilename){
-//        if(newFilename != "" || newFilename != " ") {
-//            ReadFile reader = new ReadFile(newFilename);
-//            System.out.print('\n');
-//            System.out.println("Plik zrodlowy z danymi zostal zmieniony, kursy beda pobierane z pliku: " + newFilename);
-//        }
-//        else {
-//            System.out.print('\n');
-//            System.out.println("Plik zrodlowy z danymi nie zostal zmieniony, kursy beda pobierane z pliku: " + filename);
-//        }
-//    }
+    public static void NewFile(String newFilename){
+        if(newFilename != "") {
+            ReadFile readFile = new ReadFile(newFilename);
+            System.out.print('\n');
+            System.out.println("Plik zrodlowy z danymi zostal zmieniony, kursy beda pobierane z pliku: " + newFilename);
+        }
+        else {
+            System.out.print('\n');
+            System.out.println("Plik zrodlowy z danymi nie zostal zmieniony, kursy beda pobierane z pliku: " + filename);
+        }
+    }
 }

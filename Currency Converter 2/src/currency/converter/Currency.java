@@ -1,17 +1,13 @@
 package currency.converter;
 
-public class Currency {
+abstract class Currency {
     protected String currIn;
     protected String currOut;
-    private double amount;
     
-    public Currency(String currIn, String currOut, double amount) {
+    public Currency(String currIn, String currOut) {
         this.currIn = currIn;
         this.currOut = currOut;
-        this.amount = amount;
     }
     
-    public double getAmount() {
-        return amount;
-    }
+    public abstract double ConvertAmount(double amount);
 }
