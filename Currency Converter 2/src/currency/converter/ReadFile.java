@@ -48,7 +48,7 @@ class ReadFile  {
         }
     }
     
-    public static double GetValueByKey(String key) {
+    public static double GetValue(String key) {
         // Wywołanie funkcji do odczytu danych z pliku
         Map<String, String> dataMap = ReadDataFromFile();
         

@@ -3,9 +3,10 @@ package currency.converter;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class ControlPanel{
+class ControlPanel{
     private static String currIn, currOut;
     private static double amount, exchangeRate;
+    private static String actualFile, newFile;
     private static String option;
 
     private static void Menu() {
@@ -57,9 +58,9 @@ public class ControlPanel{
                         System.out.print("Podaj kwote: ");
                     try {         
                         amount = Double.parseDouble(scanner.nextLine());
-                        ExchangeRate rate = new ExchangeRate(currIn, currOut);
+                        ExchangeRate rate = new ExchangeRate(currIn, currOut, amount);
                         System.out.print('\n');
-                        System.out.println(rounding.format(amount) + " " + currIn + " to " + rounding.format(rate.ConvertAmount(amount)) + " " + currOut);
+                        System.out.println(rounding.format(amount) + " " + currIn + " to " + rounding.format(rate.ConvertAmount()) + " " + currOut);
                     } 
                     catch (NumberFormatException error) {
                         System.out.print('\n');
@@ -132,13 +133,11 @@ public class ControlPanel{
                 case "6":
                     System.out.println("PLIK ZAWIERAJACY KURSY WYMIANY WALUT");
                     
-                    String actualFile = ReadFile.filename;
-                    String newFile;
+                    actualFile = ReadFile.filename;
                     
                     System.out.println("Aktualna pliku z danymi: " + actualFile);
                     System.out.print("Nowa plik z danymi: ");
                     newFile = scanner.nextLine();
-                    
                     ReadFile.NewFile(newFile);
                     Continue();
                     break;
